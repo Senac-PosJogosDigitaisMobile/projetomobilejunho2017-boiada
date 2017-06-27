@@ -32,7 +32,7 @@ public class GameControl : MonoBehaviour
         if (gameOver)
         {
 
-            scoreText.text = "R.I.P";
+            scoreText.text = "R.I.P - " + Mathf.RoundToInt(666-score).ToString() + " seg.";
             
         }
         else
