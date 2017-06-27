@@ -9,9 +9,9 @@ public class GameControl : MonoBehaviour
 	public Text scoreText;						//A reference to the UI text component that displays the player's score.
 	public GameObject gameOvertext;				//A reference to the object that displays the text which appears when the player dies.
 
-	private int score = 0;						//The player's score.
+	private float score = 666f;						//The player's score.
 	public bool gameOver = false;				//Is the game over?
-	public float scrollSpeed = -1.5f;
+	public float scrollSpeed = 0f;
 
 
 	void Awake()
@@ -28,12 +28,28 @@ public class GameControl : MonoBehaviour
 
 	void Update()
 	{
-		//If the game is over and the player has pressed some input...
-		if (gameOver && Input.GetMouseButtonDown(0)) 
+                
+        if (gameOver)
+        {
+
+            scoreText.text = "R.I.P";
+            
+        }
+        else
+        {
+
+            score = score - Time.deltaTime * 2;
+            scoreText.text = "Time: " + Mathf.RoundToInt(score).ToString();
+
+        }
+        //If the game is over and the player has pressed some input...
+        if (gameOver && Input.GetMouseButtonDown(0)) 
 		{
 			//...reload the current scene.
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-		}
+            
+
+        }
 	}
 
 	public void BirdScored()
@@ -42,9 +58,9 @@ public class GameControl : MonoBehaviour
 		if (gameOver)	
 			return;
 		//If the game is not over, increase the score...
-		score++;
+		
 		//...and adjust the score text.
-		scoreText.text = "Score: " + score.ToString();
+		
 	}
 
 	public void BirdDied()
