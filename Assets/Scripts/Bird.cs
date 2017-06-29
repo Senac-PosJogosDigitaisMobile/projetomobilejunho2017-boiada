@@ -47,7 +47,7 @@ public class Bird : MonoBehaviour
         if(isDead == false) {
             anim.SetTrigger("Flap");
             rb2d.velocity = Vector2.zero;
-            rb2d.transform.position = new Vector3(x, y, 10.0f);
+            rb2d.transform.position = new Vector3(x, y, 0f);
 
             }
     }

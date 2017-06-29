@@ -47,8 +47,6 @@ public class ColumnPool : MonoBehaviour
 
 			//...then set the current column to that position.
 			columns[currentColumn].transform.position = new Vector2(spawnXPosition, spawnYPosition);
-            Debug.Log(spawnXPosition);
-            Debug.Log(spawnYPosition);
             //Increase the value of currentColumn. If the new size is too big, set it back to zero
             currentColumn ++;
 
