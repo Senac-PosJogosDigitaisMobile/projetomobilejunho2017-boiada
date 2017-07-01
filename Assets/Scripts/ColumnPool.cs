@@ -13,7 +13,7 @@ public class ColumnPool : MonoBehaviour
 	private int currentColumn = 0;									//Index of the current column in the collection.
 
 	private Vector2 objectPoolPosition = new Vector2 (-15,-25);		//A holding position for our unused columns offscreen.
-	private float spawnXPosition = 10f;
+	private float spawnXPosition = 15f;
 
 	private float timeSinceLastSpawned;
 

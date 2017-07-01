@@ -14,7 +14,7 @@ public class PowerDownPool : MonoBehaviour {
     private int currentPowerDown = 0;   //Início do próximo PowerDown da coleção
 
     private Vector2 objectPoolPosition = new Vector2(-15, -25); //A posição onde ficam os PowerDowns em espera
-    private float spawnXPosition = 10f;
+    private float spawnXPosition = 15f;
 
     private float timeSinceLastSpawned;
 
