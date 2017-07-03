@@ -14,6 +14,7 @@ public class Bird : MonoBehaviour
     private int powerDownId;
     private bool powerDownIsOn = false;
     private float powerDownTime;
+    public GameObject blind;
 
 
 	void Start()
@@ -22,7 +23,10 @@ public class Bird : MonoBehaviour
 		anim = GetComponent<Animator> ();
 		//Get and store a reference to the Rigidbody2D attached to this GameObject.
 		rb2d = GetComponent<Rigidbody2D>();
-	}
+
+        PlayerPrefs.SetInt("tightcolumns", 0); //reiniciar com o PowerDown2 desativado
+        PlayerPrefs.SetInt("fastcolumns", 0); //reiniciar com o Powerdown3 desativado
+    }
 
 	void Update()
 	{
@@ -34,6 +38,9 @@ public class Bird : MonoBehaviour
         if(powerDownTime <= Time.timeSinceLevelLoad * 2 && powerDownIsOn == true)
         {
             powerDownIsOn = false;
+            blind.SetActive(false); //fim do PowerDown 1
+            PlayerPrefs.SetInt("tightcolumns", 0); //fim do PowerDown 2
+            PlayerPrefs.SetInt("fastcolumns", 0); //fim do PowerDown 3
         }
 	}
 
@@ -55,18 +62,19 @@ public class Bird : MonoBehaviour
             powerDownIsOn = true;
             powerDownTime = (Time.timeSinceLevelLoad * 2) + 4;
 
-            powerDownId = Mathf.FloorToInt(Random.Range(1,1)); //MUDAR PARA 1,4 QUANDO TERMINAR TESTE
+            powerDownId = (Random.Range(1,4)); //MUDAR PARA 1,4 QUANDO TERMINAR TESTE
+            //Debug.Log(Random.Range(1,3));
             switch (powerDownId){
                 case 1:
-                    
+                    blind.SetActive(true);
                     break;
 
                 case 2:
-
+                    PlayerPrefs.SetInt("tightcolumns", 1);
                     break;
 
                 case 3:
-
+                    PlayerPrefs.SetInt("fastcolumns", 1);
                     break;
 
                 case 4:

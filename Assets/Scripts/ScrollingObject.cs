@@ -5,7 +5,6 @@ using UnityEngine;
 public class ScrollingObject : MonoBehaviour{
     public static ScrollingObject instance;
     public float velocity = -10f;
-    public float velAdd;
 	private Rigidbody2D rb2d;
 
     // Use this for initialization
@@ -17,11 +16,17 @@ public class ScrollingObject : MonoBehaviour{
         rb2d.velocity = new Vector2(velocity, 0);
     }
     // GameControl.instance.scrollSpeed
-    void Update()
-	{
+    void Update(){
 		// If the game is over, stop scrolling.
 		if(GameControl.instance.gameOver == true){
 			rb2d.velocity = Vector2.zero;
 		}
+
+        if(GameControl.instance.gameOver == false && PlayerPrefs.GetInt("fastcolumns") == 1){
+            rb2d.velocity = new Vector2(velocity - 10f, 0);
+        }
+        if(GameControl.instance.gameOver == false && PlayerPrefs.GetInt("fastcolumns") == 0){
+            rb2d.velocity = new Vector2(velocity, 0);
+        }
 	}
 }
