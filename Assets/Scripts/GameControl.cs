@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviour
 
 	private float score = 666f;						//The player's score.
 	public bool gameOver = false;				//Is the game over?
+	public float scrollSpeed = 0f;
 
 
 	void Awake()
@@ -31,7 +32,7 @@ public class GameControl : MonoBehaviour
         if (gameOver)
         {
 
-            scoreText.text = "R.I.P.  " + Mathf.RoundToInt(666-score).ToString() + " seg.";
+            scoreText.text = "R.I.P - " + Mathf.RoundToInt(666-score).ToString() + " seg.";
             
         }
         else
