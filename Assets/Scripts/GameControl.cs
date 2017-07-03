@@ -9,6 +9,10 @@ public class GameControl : MonoBehaviour
 	public Text scoreText;						//A reference to the UI text component that displays the player's score.
 	public GameObject gameOvertext;				//A reference to the object that displays the text which appears when the player dies.
 
+    public AudioClip theme;
+    public AudioClip death;
+    private AudioSource source;
+
 	private float score = 666f;						//The player's score.
 	public bool gameOver = false;				//Is the game over?
 
@@ -23,6 +27,9 @@ public class GameControl : MonoBehaviour
 		else if(instance != this)
 			//...destroy this one because it is a duplicate.
 			Destroy (gameObject);
+
+        source = GetComponent<AudioSource>();
+        source.PlayOneShot(theme);
 	}
 
 	void Update()
@@ -68,5 +75,7 @@ public class GameControl : MonoBehaviour
 		gameOvertext.SetActive (true);
 		//Set the game to be over.
 		gameOver = true;
+        source.Stop();
+        source.PlayOneShot(death);
 	}
 }

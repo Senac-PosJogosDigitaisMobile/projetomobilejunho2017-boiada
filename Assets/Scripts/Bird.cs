@@ -16,8 +16,15 @@ public class Bird : MonoBehaviour
     private float powerDownTime;
     public GameObject blind;
 
+    public AudioClip powerDownSound;
+    private AudioSource source;
 
-	void Start()
+    private void Awake()
+    {
+        source = GetComponent<AudioSource>();
+    }
+
+    void Start()
 	{
 		//Get reference to the Animator component attached to this GameObject.
 		anim = GetComponent<Animator> ();
@@ -59,6 +66,7 @@ public class Bird : MonoBehaviour
         
         if (other.gameObject.tag == "PowerDown" && powerDownIsOn == false)
         {
+            source.PlayOneShot(powerDownSound);
             powerDownIsOn = true;
             powerDownTime = (Time.timeSinceLevelLoad * 2) + 4;
 
